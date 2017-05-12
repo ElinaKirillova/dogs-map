@@ -32,12 +32,12 @@
 
 		    function init(){     
 		        myMap = new ymaps.Map("map", {
-		            center: [57.47, 37.64],
-		            zoom: 7
+		            center: [55.753559, 37.609218],
+		            zoom: 11
 		        });
 
 			    for (i = 0; i < cafes.length; i++) {
-				   	myPlacemark = new ymaps.Placemark([cafes[i].longitude, cafes[i].latitude], { hintContent: cafes[i].title, balloonContent: cafes[i].description });
+				   	myPlacemark = new ymaps.Placemark([cafes[i].latitude, cafes[i].longitude], { hintContent: cafes[i].title, balloonContent: cafes[i].description });
 
 					myMap.geoObjects.add(myPlacemark);
 				}
