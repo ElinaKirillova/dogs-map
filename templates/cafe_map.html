@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+		<style type="text/css">
+			@import url("static/css/bootstrap.min.css")
+		</style>
+	</head>
+	</head>
+	<body>
+	   <h1>Карта кафе ...</h1>
+	   <div id="map" style="width: 600px; height: 400px"></div>
+
+	   <script type="text/javascript">
+		    ymaps.ready(init);
+		    var myMap,
+		    	myPlacemark;
+
+		    function init(){     
+		        myMap = new ymaps.Map("map", {
+		            center: [57.56, 37.64],
+		            zoom: 7
+		        });
+
+			    {% for cafe in cafes %}
+				   	myPlacemark = new ymaps.Placemark({{ cafe.longitude }}, {{ cafe.latitude }}, { hintContent:{{ cafe.title }}, balloonContent: {{ cafe.description }});
+					}
+					myMap.geoObjects.add(myPlacemark);
+				{% endfor %}
+
+
+
+		    
+		</script>
+	</body>
+</html>
