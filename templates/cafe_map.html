@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
+		<title> Кафе dog-friendly </title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
     	<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
 		<style type="text/css">
@@ -9,10 +10,40 @@
 	</head>
 	</head>
 	<body>
-	   <h1>Карта кафе ...</h1>
+	   <h1>Кафе, куда можно прийти с собакой </h1>
 	   <div id="map" style="width: 600px; height: 400px"></div>
 
+	<table border='0' cellspacing='0' cellpadding='2' style='border-top:solid 1px #000000; border-left:solid 1px #000000;'>
+	<meta charset="utf-8">
+	<tr>
+	<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>Название</td>
+	<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>Адрес</td>
+	<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>Описание</td>
+	</tr>
+
+	{% for cafe in cafes %}
+		<tr>
+		<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>{{ cafe.name }}</td>
+		<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>{{ cafe.address }}</td>
+		<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>{{ cafe.description }} </td>
+		</tr>
+	{% endfor %}
+
+	</table>
+
 	   <script type="text/javascript">
+	   		var cafes = [
+				{% for cafe in cafes %}
+					{ 
+					longitude: {{ cafe.longitude }}, 
+					latitude: {{ cafe.latitude}},
+					title: {{ cafe.title}},
+					description: {{ cafe.description}},
+					address: {{ cafe.address}}
+					},
+				{% endfor %} 
+	   		];
+
 		    ymaps.ready(init);
 		    var myMap,
 		    	myPlacemark;
@@ -23,13 +54,12 @@
 		            zoom: 7
 		        });
 
-			    {% for cafe in cafes %}
-				   	myPlacemark = new ymaps.Placemark({{ cafe.longitude }}, {{ cafe.latitude }}, { hintContent:{{ cafe.title }}, balloonContent: {{ cafe.description }});
-					}
+			    for (i = 0; i < cafes.length; i++) {
+				   	myPlacemark = new ymaps.Placemark([cafes[i].longitude, cafes[i].latitude], { hintContent: cafes[i].title, balloonContent: cafes[i].description });
+
 					myMap.geoObjects.add(myPlacemark);
-				{% endfor %}
-
-
+				}
+		    }
 
 		    
 		</script>
