@@ -28,6 +28,7 @@ class Place(Base):
 
 def init_db():
     csv_headers = ['name', 'address', 'latitude', 'longitude', 'description']
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
     load_data_from_csv('place.csv', Place, True, csv_headers)
 

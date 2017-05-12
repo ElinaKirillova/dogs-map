@@ -10,15 +10,30 @@
 <body>
     <center>
         <form method="POST" action="/map">
-			<p><input type="text" placeholder="Введите широту" name="ltd">
+			<p><input type="text" placeholder="Введите широту" name="ltd" value="55.72711009">
 			</p>
-			<p><input type="text" placeholder="Введите долготу" name="lng">
+			<p><input type="text" placeholder="Введите долготу" name="lng" value="37.6171875">
 			</p>
 			<input type="submit" value="Найти кафе!">
     	</form>
-    	<br/>
-    	<p><img src='static/dog_main.png' width="400" height="400"/></p>
+    	<p><img src='static/dog_main.png' width="300" height="300"/></p>
     </center>
+    <script>
+		var input_ltd = document.querySelector('input[name=ltd]');
+		var input_lng = document.querySelector('input[name=lng]');
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(savePosition);
+		    } else {
+		    	alert("Определение геолокации не поддерживается вашим браузером, введите данные вручную")
+		    }
+		}
+		function savePosition(position) {
+			input_ltd.value = position.coords.latitude;
+			input_lng.value = position.coords.longitude; 
+		}
+		getLocation();
+	</script>
 
 </body>
 </html>

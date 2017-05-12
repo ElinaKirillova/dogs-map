@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Собакевич!</title>
+    <style type="text/css">
+		table {
+	    border-collapse: collapse;
+	    width: 100%;
+	    }
+
+		th, td {
+		    font-family: Verdana;
+		    text-align: left;
+		    padding: 8px;
+		}
+
+		tr:nth-child(even){background-color: #f2f2f2}
+
+		th {
+		    background-color: #4CAF50;
+		    color: white;
+		}
+	</style>
+</head>
+<body>
+    {% if error %}
+        <h3>{{ error }}</h3>
+    {%endif%}
+
+    <table>
+        <tr>
+        <td><b>Название</b></td>
+        <td><b>Адрес</b></td>
+        <td><b>Описание</b></td>
+        </tr>
+
+        {% for cafe in cafes %}
+        
+        <tr>
+            <td>
+                {% if cafe.name == nearest_cafe.name and cafe.address == nearest_cafe.address %}
+                    <b>{{ cafe.name }}</b>
+                {% else %}
+                    {{ cafe.name }}
+                {% endif %}
+
+            </td>
+
+            <td>
+                {% if cafe.name == nearest_cafe.name and cafe.address == nearest_cafe.address %}
+                    <b>{{ cafe.address }}</b>
+                {% else %}
+                    {{ cafe.address }}
+                {% endif %}
+            </td>
+
+          
+            <td>
+                {% if cafe.name == nearest_cafe.name and cafe.address == nearest_cafe.address %}
+                    <b>{{ cafe.description }}</b>
+                {% else %}
+                    {{ cafe.description }}
+                {% endif %}
+            </td>
+
+            </tr>
+        {% endfor %}
+
+        </table>
+    </body>
+</html>
