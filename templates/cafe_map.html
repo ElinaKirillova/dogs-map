@@ -13,33 +13,15 @@
 	   <h1>Кафе, куда можно прийти с собакой </h1>
 	   <div id="map" style="width: 600px; height: 400px"></div>
 
-	<table border='0' cellspacing='0' cellpadding='2' style='border-top:solid 1px #000000; border-left:solid 1px #000000;'>
-	<meta charset="utf-8">
-	<tr>
-	<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>Название</td>
-	<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>Адрес</td>
-	<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>Описание</td>
-	</tr>
-
-	{% for cafe in cafes %}
-		<tr>
-		<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>{{ cafe.name }}</td>
-		<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>{{ cafe.address }}</td>
-		<td style='border-bottom:solid 1px #000000; border-right:solid 1px #000000;'>{{ cafe.description }} </td>
-		</tr>
-	{% endfor %}
-
-	</table>
-
 	   <script type="text/javascript">
 	   		var cafes = [
 				{% for cafe in cafes %}
 					{ 
 					longitude: {{ cafe.longitude }}, 
 					latitude: {{ cafe.latitude}},
-					title: {{ cafe.title}},
-					description: {{ cafe.description}},
-					address: {{ cafe.address}}
+					title: "{{ cafe.name}}",
+					description: "{{ cafe.description}}",
+					address: "{{ cafe.address}}"
 					},
 				{% endfor %} 
 	   		];
@@ -50,7 +32,7 @@
 
 		    function init(){     
 		        myMap = new ymaps.Map("map", {
-		            center: [57.56, 37.64],
+		            center: [57.47, 37.64],
 		            zoom: 7
 		        });
 
