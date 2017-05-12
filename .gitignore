@@ -1,5 +1,5 @@
 __pycache__/
 dogenv/
 place.sqlite
-placelist.csv
+place.csv
 .DS_Store
