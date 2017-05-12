@@ -17,7 +17,7 @@ def show_map():
     nearest_cafe_result = find_nearest_cafe(cafes, ltd, lng)
     nearest_cafe = nearest_cafe_result["cafe"]
     distance = nearest_cafe_result["distance"]
-    return render_template('testmap.html', 
+    return render_template('map.html', 
         cafes=cafes, nearest_cafe=nearest_cafe, distance=distance)
 
 
